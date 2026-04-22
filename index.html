@@ -1,10 +1,177 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Shuddh Shakti Oils</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shuddh Shakti Oils</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+header {
+    background: #1b5e20;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    background: #2e7d32;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    text-align: center;
+    padding: 20px;
+}
+
+.product {
+    background: white;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    width: 220px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+button {
+    background: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#cart {
+    background: #e8f5e9;
+}
+
+footer {
+    background: #1b5e20;
+    color: white;
+    padding: 10px;
+}
+</style>
+
 </head>
+
 <body>
-    <h1>Shuddh Shakti Oils Website is LIVE 🚀</h1>
-    <p>Your business website is working successfully.</p>
+
+<header>
+    <h1>Shuddh Shakti Oils</h1>
+    <p>100% Pure • Cold Pressed • Chemical-Free</p>
+</header>
+
+<nav>
+    <a href="#products">Products</a>
+    <a href="#cart">Cart</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="products">
+    <h2>Our Oils</h2>
+
+    <div class="product">
+        <h3>Coconut Oil</h3>
+        <p>₹350 / litre</p>
+        <button onclick="addToCart('Coconut Oil',350)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Mustard Oil</h3>
+        <p>₹200 / litre</p>
+        <button onclick="addToCart('Mustard Oil',200)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Soyabean Oil</h3>
+        <p>₹150 / litre</p>
+        <button onclick="addToCart('Soyabean Oil',150)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Sesame (Til) Oil</h3>
+        <p>₹400 / litre</p>
+        <button onclick="addToCart('Sesame Oil',400)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Sunflower Oil</h3>
+        <p>₹180 / litre</p>
+        <button onclick="addToCart('Sunflower Oil',180)">Add to Cart</button>
+    </div>
+
+</section>
+
+<section id="cart">
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <h3 id="total">Total: ₹0</h3>
+
+    <button onclick="orderNow()">Order via WhatsApp</button>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>📞 Your Phone Number</p>
+    <p>📍 Chhattisgarh, India</p>
+</section>
+
+<footer>
+    <p>© 2026 Shuddh Shakti Oils</p>
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    total += price;
+    displayCart();
+}
+
+function displayCart() {
+    let list = document.getElementById("cartItems");
+    list.innerHTML = "";
+
+    cart.forEach(item => {
+        let li = document.createElement("li");
+        li.textContent = item.name + " - ₹" + item.price;
+        list.appendChild(li);
+    });
+
+    document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function orderNow() {
+    let message = "Order Details:%0A";
+
+    cart.forEach(item => {
+        message += item.name + " - ₹" + item.price + "%0A";
+    });
+
+    message += "Total: ₹" + total;
+
+    let phone = "91XXXXXXXXXX"; // 👉 PUT YOUR NUMBER HERE
+
+    window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
+}
+</script>
+
 </body>
 </html>

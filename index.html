@@ -1,74 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shuddh Shakti Oils</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuddh Shakti Oils | 100% Pure Cold Pressed</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --secondary: #1b5e20;
+            --accent: #fbc02d;
+            --light: #f9f9f9;
+        }
 
-<style>
-body {
-    font-family: Arial;
-    margin: 0;
-    background: #f4f4f4;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: var(--light);
+            color: #333;
+        }
 
-header {
-    background: #1b5e20;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
+        header {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
 
-nav {
-    background: #2e7d32;
-    text-align: center;
-    padding: 10px;
-}
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
 
-nav a {
-    color: white;
-    margin: 10px;
-    text-decoration: none;
-    font-weight: bold;
-}
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
 
-section {
-    text-align: center;
-    padding: 20px;
-}
+        .product-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
 
-.product {
-    background: white;
-    margin: 15px;
-    padding: 20px;
-    border-radius: 10px;
-    display: inline-block;
-    width: 220px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+        .product-card:hover { transform: translateY(-5px); }
 
-button {
-    background: green;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
+        .product-img {
+            width: 100%;
+            height: 150px;
+            background: #eee;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background-size: cover;
+            background-position: center;
+        }
 
-#cart {
-    background: #e8f5e9;
-}
+        .qty-input {
+            width: 60px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            text-align: center;
+        }
 
-footer {
-    background: #1b5e20;
-    color: white;
-    padding: 10px;
-}
-</style>
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
 
+        button:hover { background: var(--secondary); }
+
+        #cart-section {
+            background: white;
+            margin-top: 40px;
+            padding: 30px;
+            border-radius: 15px;
+            border-top: 8px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .whatsapp-btn { background: #25D366; margin-top: 20px; }
+        .whatsapp-btn:hover { background: #128C7E; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
@@ -76,101 +109,111 @@ footer {
     <p>100% Pure • Cold Pressed • Chemical-Free</p>
 </header>
 
-<nav>
-    <a href="#products">Products</a>
-    <a href="#cart">Cart</a>
-    <a href="#contact">Contact</a>
-</nav>
+<div class="container">
+    <section id="products">
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200?text=Coconut+Oil');"></div>
+                <h3>Coconut Oil</h3>
+                <p>₹350 / Litre</p>
+                <label for="qty-coconut">Quantity (L):</label><br>
+                <input type="number" id="qty-coconut" class="qty-input" value="1" min="1">
+                <button onclick="addToCart('Coconut Oil', 350, 'qty-coconut')">Add to Cart</button>
+            </div>
 
-<section id="products">
-    <h2>Our Oils</h2>
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200?text=Mustard+Oil');"></div>
+                <h3>Mustard Oil</h3>
+                <p>₹200 / Litre</p>
+                <label for="qty-mustard">Quantity (L):</label><br>
+                <input type="number" id="qty-mustard" class="qty-input" value="1" min="1">
+                <button onclick="addToCart('Mustard Oil', 200, 'qty-mustard')">Add to Cart</button>
+            </div>
 
-    <div class="product">
-        <h3>Coconut Oil</h3>
-        <p>₹350 / litre</p>
-        <button onclick="addToCart('Coconut Oil',350)">Add to Cart</button>
-    </div>
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://via.placeholder.com/300x200?text=Sesame+Oil');"></div>
+                <h3>Sesame (Til) Oil</h3>
+                <p>₹400 / Litre</p>
+                <label for="qty-sesame">Quantity (L):</label><br>
+                <input type="number" id="qty-sesame" class="qty-input" value="1" min="1">
+                <button onclick="addToCart('Sesame Oil', 400, 'qty-sesame')">Add to Cart</button>
+            </div>
+        </div>
+    </section>
 
-    <div class="product">
-        <h3>Mustard Oil</h3>
-        <p>₹200 / litre</p>
-        <button onclick="addToCart('Mustard Oil',200)">Add to Cart</button>
-    </div>
-
-    <div class="product">
-        <h3>Soyabean Oil</h3>
-        <p>₹150 / litre</p>
-        <button onclick="addToCart('Soyabean Oil',150)">Add to Cart</button>
-    </div>
-
-    <div class="product">
-        <h3>Sesame (Til) Oil</h3>
-        <p>₹400 / litre</p>
-        <button onclick="addToCart('Sesame Oil',400)">Add to Cart</button>
-    </div>
-
-    <div class="product">
-        <h3>Sunflower Oil</h3>
-        <p>₹180 / litre</p>
-        <button onclick="addToCart('Sunflower Oil',180)">Add to Cart</button>
-    </div>
-
-</section>
-
-<section id="cart">
-    <h2>Your Cart</h2>
-    <ul id="cartItems"></ul>
-    <h3 id="total">Total: ₹0</h3>
-
-    <button onclick="orderNow()">Order via WhatsApp</button>
-</section>
-
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>📞 Your Phone Number</p>
-    <p>📍 Chhattisgarh, India</p>
-</section>
+    <section id="cart-section">
+        <h2>🛍️ Your Order Summary</h2>
+        <ul id="cartItems" style="list-style: none; padding: 0;">
+            <p style="color: #999;">Your cart is currently empty.</p>
+        </ul>
+        <hr>
+        <h3 style="text-align: right;">Total Amount: ₹<span id="totalPrice">0</span></h3>
+        <button class="whatsapp-btn" onclick="sendWhatsApp()">Proceed to Order via WhatsApp</button>
+    </section>
+</div>
 
 <footer>
-    <p>© 2026 Shuddh Shakti Oils</p>
+    <p>© 2026 Shuddh Shakti Oils • Chhattisgarh, India</p>
 </footer>
 
 <script>
-let cart = [];
-let total = 0;
+    let cart = [];
 
-function addToCart(name, price) {
-    cart.push({name, price});
-    total += price;
-    displayCart();
-}
+    function addToCart(name, price, qtyId) {
+        const qty = parseInt(document.getElementById(qtyId).value);
+        if (qty <= 0) return;
 
-function displayCart() {
-    let list = document.getElementById("cartItems");
-    list.innerHTML = "";
+        const existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.qty += qty;
+        } else {
+            cart.push({ name, price, qty });
+        }
+        updateDisplay();
+    }
 
-    cart.forEach(item => {
-        let li = document.createElement("li");
-        li.textContent = item.name + " - ₹" + item.price;
-        list.appendChild(li);
-    });
+    function updateDisplay() {
+        const list = document.getElementById("cartItems");
+        let total = 0;
+        
+        if (cart.length === 0) {
+            list.innerHTML = '<p style="color: #999;">Your cart is currently empty.</p>';
+        } else {
+            list.innerHTML = "";
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                list.innerHTML += `<li style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                    <strong>${item.name}</strong><br>
+                    ${item.qty} Litre(s) × ₹${item.price} = <strong>₹${itemTotal}</strong>
+                </li>`;
+            });
+        }
 
-    document.getElementById("total").innerText = "Total: ₹" + total;
-}
+        document.getElementById("totalPrice").innerText = total;
+    }
 
-function orderNow() {
-    let message = "Order Details:%0A";
+    function sendWhatsApp() {
+        if (cart.length === 0) {
+            alert("Please add at least one item to your cart first.");
+            return;
+        }
+        
+        let message = "New Order from *Shuddh Shakti Oils* Website:%0A------------------%0A";
+        let total = 0;
 
-    cart.forEach(item => {
-        message += item.name + " - ₹" + item.price + "%0A";
-    });
+        cart.forEach(item => {
+            let itemTotal = item.price * item.qty;
+            message += `• *${item.name}*: ${item.qty}L - ₹${itemTotal}%0A`;
+            total += itemTotal;
+        });
 
-    message += "Total: ₹" + total;
-
-    let phone = "91XXXXXXXXXX"; // 👉 PUT YOUR NUMBER HERE
-
-    window.open("https://wa.me/" + phone + "?text=" + message, "_blank");
-}
+        message += `------------------%0A*Total Amount: ₹${total}*%0A%0APlease confirm my order.`;
+        
+        const phone = "91XXXXXXXXXX"; // 👉 UPDATE THIS WITH YOUR ACTUAL NUMBER
+        window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+    }
 </script>
 
 </body>

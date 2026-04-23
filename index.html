@@ -7,95 +7,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2d5a27; /* Deep Forest Green */
-            --accent: #d4a373;  /* Golden Harvest */
-            --bg: #fdfbf7;      /* Creamy Paper White */
+            --primary: #2d5a27;
+            --accent: #d4a373;
+            --bg: #fdfbf7;
             --text: #1a1a1a;
             --white: #ffffff;
             --discount: #2d5a27;
-            --star: #ffc107;    /* Golden Yellow for stars */
+            --star: #ffc107;
         }
 
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            background-color: var(--bg); 
-            color: var(--text);
-            scroll-behavior: smooth;
-        }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg); color: var(--text); scroll-behavior: smooth; }
 
-        nav {
-            background: var(--white);
-            padding: 0.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+        nav { background: var(--white); padding: 0.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .nav-logo img { height: 60px; width: auto; display: block; }
 
-        header {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 7;
-            background: url('Banner.png') no-repeat center center; 
-            background-size: contain;
-            background-color: var(--bg);
-            position: relative;
-        }
-
-        @media (max-width: 768px) { header { aspect-ratio: 16 / 9; background-size: cover; } }
+        header { width: 100%; height: auto; aspect-ratio: 16 / 7; background: url('Banner.png') no-repeat center center; background-size: contain; background-color: var(--bg); }
 
         .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
 
-        /* Rating & Review Styling */
-        .stars { color: var(--star); font-size: 0.9rem; margin: 5px 0; }
-        .review-text { font-size: 0.85rem; color: #666; font-style: italic; margin-bottom: 10px; padding: 0 15px; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-        .overall-rating { text-align: center; margin-bottom: 30px; font-weight: 600; font-size: 1.1rem; }
-
+        /* Product Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--white); border-radius: 20px; overflow: hidden; border: 1px solid #eee; text-align: center; padding-bottom: 25px; display: flex; flex-direction: column; height: 100%; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 280px; object-fit: contain; padding: 10px; }
+        
+        /* Review Display Styles */
+        .stars { color: var(--star); cursor: pointer; }
+        .review-section { padding: 15px; border-top: 1px solid #f9f4ee; margin-top: 10px; text-align: left; max-height: 150px; overflow-y: auto; }
+        .review-item { font-size: 0.8rem; margin-bottom: 8px; border-bottom: 1px dashed #eee; padding-bottom: 5px; }
+        .write-review-btn { background: none; border: 1px solid var(--accent); color: var(--accent); padding: 5px 15px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; margin-top: 10px; font-weight: 600; }
+        .write-review-btn:hover { background: var(--accent); color: white; }
 
-        .card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
-            text-align: center;
-            padding-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .modal-content { background: white; margin: 10% auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; position: relative; }
+        .close { position: absolute; right: 20px; top: 10px; font-size: 24px; cursor: pointer; }
+        .modal-content h3 { font-family: 'Playfair Display'; color: var(--primary); }
+        .rating-input { font-size: 25px; margin: 10px 0; color: #ccc; }
+        .rating-input span:hover, .rating-input span.active { color: var(--star); }
+        textarea { width: 100%; height: 80px; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin: 10px 0; font-family: inherit; }
         
-        .card img { width: 100%; height: 320px; object-fit: contain; background: #fff; padding: 10px; }
-        .card h3 { font-family: 'Playfair Display', serif; margin: 15px 0 5px; color: var(--primary); }
-        
+        /* Price & Buttons */
         .price-container { background: #f9f4ee; margin: 10px 25px; padding: 10px; border-radius: 12px; }
-        .mrp { text-decoration: line-through; color: #888; font-size: 0.9rem; }
-        .price { color: var(--text); font-weight: 700; font-size: 1.3rem; margin: 5px 0; }
-        .discount-tag { background: var(--discount); color: white; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
-
-        /* Company Testimonials Section */
-        .company-reviews { background: #f0f4f0; padding: 60px 20px; border-radius: 30px; margin-top: 60px; }
-        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
-        .testi-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
-
-        .controls { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 0 20px; margin-top: auto; }
-        .qty { width: 65px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; text-align: center; font-weight: bold; }
-        .btn { background: var(--accent); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .btn:hover { background: #b88a5d; transform: scale(1.05); }
-
-        .cart-badge { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; padding: 15px 25px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 1001; text-decoration: none; font-weight: bold; display: none; }
+        .price { font-weight: 700; font-size: 1.2rem; }
+        .controls { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: auto; padding: 0 20px; }
+        .qty { width: 60px; padding: 10px; border-radius: 8px; border: 1px solid #ddd; text-align: center; }
+        .btn { background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        
         .cart-box { margin-top: 60px; background: var(--white); padding: 40px; border-radius: 20px; border-top: 5px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        #cartContent li { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
-        .total { font-size: 1.8rem; text-align: right; margin: 20px 0; font-family: 'Playfair Display', serif; color: var(--primary); }
-        .whatsapp-btn { background: #25D366; width: 100%; font-size: 1.2rem; padding: 20px; margin-top: 10px; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .whatsapp-btn { background: #25D366; width: 100%; font-size: 1.2rem; padding: 20px; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px; }
 
         footer { background: #1a1a1a; color: white; padding: 40px 20px; text-align: center; margin-top: 60px; }
     </style>
@@ -104,205 +65,185 @@
 
 <nav>
     <div class="nav-logo"><img src="SSlogo.png" alt="Shuddh Shakti Logo"></div>
-    <div style="font-weight: 600; color: var(--accent);">100% PURE & NATURAL</div>
+    <div style="font-weight: 600; color: var(--accent);">Ghani Guru Quality</div>
 </nav>
 
 <header></header>
 
-<a href="#order" class="cart-badge" id="floatingCart">🛒 Cart (<span id="cartCount">0</span>)</a>
-
 <div class="container">
-    <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 10px; color: var(--primary);">Premium Collection</h2>
-    <div class="overall-rating">
-        <span class="stars">★★★★★</span> 4.9/5 Based on 100+ happy families in Raipur
-    </div>
+    <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--primary);">Our Pure Cold Pressed Oils</h2>
     
     <div class="grid">
-        <div class="card">
+        <div class="card" id="p1">
             <img src="Coconut.png" alt="Coconut Oil">
             <h3>Coconut Oil</h3>
-            <div class="stars">★★★★★</div>
-            <div class="review-text">"Purest coconut aroma I've found. Best for hair and skin!"</div>
             <div class="price-container">
-                <div class="mrp">Market Price: ₹1400</div>
                 <div class="price">₹1250 / 1L</div>
-                <span class="discount-tag">Save ₹150</span>
             </div>
             <div class="controls">
                 <input type="number" id="qty1" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Coconut Oil', 1250, 'qty1')">Add to Cart</button>
             </div>
+            <div class="review-section" id="reviews-Coconut">
+                <div class="review-item"><strong>★ 5</strong> - "Truly aromatic!"</div>
+            </div>
+            <button class="write-review-btn" onclick="openReviewModal('Coconut Oil')">Write a Review</button>
         </div>
 
-        <div class="card">
+        <div class="card" id="p2">
             <img src="mustard.png" alt="Mustard Oil">
             <h3>Mustard Oil</h3>
-            <div class="stars">★★★★★</div>
-            <div class="review-text">"Authentic 'punga' taste. Perfect for traditional cooking."</div>
             <div class="price-container">
-                <div class="mrp">Market Price: ₹550</div>
                 <div class="price">₹500 / 1L</div>
-                <span class="discount-tag">Save ₹50</span>
             </div>
             <div class="controls">
                 <input type="number" id="qty2" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Mustard Oil', 500, 'qty2')">Add to Cart</button>
             </div>
+            <div class="review-section" id="reviews-Mustard">
+                <div class="review-item"><strong>★ 5</strong> - "Perfect pungency."</div>
+            </div>
+            <button class="write-review-btn" onclick="openReviewModal('Mustard Oil')">Write a Review</button>
         </div>
 
-        <div class="card">
+        <div class="card" id="p3">
             <img src="groundnut.png" alt="Groundnut Oil">
-            <h3>Groundnut oil</h3>
-            <div class="stars">★★★★☆</div>
-            <div class="review-text">"Light and non-sticky. Ideal for deep frying snacks."</div>
+            <h3>Groundnut Oil</h3>
             <div class="price-container">
-                <div class="mrp">Market Price: ₹700</div>
                 <div class="price">₹600 / 1L</div>
-                <span class="discount-tag">Save ₹100</span>
             </div>
             <div class="controls">
                 <input type="number" id="qty3" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Groundnut Oil', 600, 'qty3')">Add to Cart</button>
             </div>
-        </div>
-
-        <div class="card">
-            <img src="soyabean.png" alt="Soyabean Oil">
-            <h3>Soyabean Oil</h3>
-            <div class="stars">★★★★★</div>
-            <div class="review-text">"Cleanest Soyabean oil in the market. No chemical smell."</div>
-            <div class="price-container">
-                <div class="mrp">Market Price: ₹500</div>
-                <div class="price">₹450 / 1L</div>
-                <span class="discount-tag">Save ₹50</span>
+            <div class="review-section" id="reviews-Groundnut">
+                <div class="review-item"><strong>★ 4</strong> - "Great for frying."</div>
             </div>
-            <div class="controls">
-                <input type="number" id="qty4" class="qty" value="1" min="1">
-                <button class="btn" onclick="addToCart('Soyabean Oil', 450, 'qty4')">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="sesame.png" alt="Sesame Oil">
-            <h3>Sesame (Til) Oil</h3>
-            <div class="stars">★★★★★</div>
-            <div class="review-text">"Rich nutty flavor. Excellent for puja and health."</div>
-            <div class="price-container">
-                <div class="mrp">Market Price: ₹950</div>
-                <div class="price">₹850 / 1L</div>
-                <span class="discount-tag">Save ₹100</span>
-            </div>
-            <div class="controls">
-                <input type="number" id="qty5" class="qty" value="1" min="1">
-                <button class="btn" onclick="addToCart('Sesame (Til) Oil', 850, 'qty5')">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="sunflower.png" alt="Sunflower Oil">
-            <h3>Sunflower Oil</h3>
-            <div class="stars">★★★★☆</div>
-            <div class="review-text">"Very light on the stomach. Great for heart health."</div>
-            <div class="price-container">
-                <div class="mrp">Market Price: ₹680</div>
-                <div class="price">₹600 / 1L</div>
-                <span class="discount-tag">Save ₹80</span>
-            </div>
-            <div class="controls">
-                <input type="number" id="qty6" class="qty" value="1" min="1">
-                <button class="btn" onclick="addToCart('Sunflower Oil', 600, 'qty6')">Add to Cart</button>
-            </div>
+            <button class="write-review-btn" onclick="openReviewModal('Groundnut Oil')">Write a Review</button>
         </div>
     </div>
 
-    <section class="company-reviews">
-        <h2 style="text-align: center; font-family: 'Playfair Display'; color: var(--primary); margin-bottom: 10px;">What Our Customers Say</h2>
-        <div class="testi-grid">
-            <div class="testi-card">
-                <div class="stars">★★★★★</div>
-                <p>"The purity of Shuddh Shakti Oils is unmatched. I finally found a brand that doesn't use chemicals."</p>
-                <div style="font-weight: 600; margin-top: 15px;">— Rajesh Sharma, Raipur</div>
-            </div>
-            <div class="testi-card">
-                <div class="stars">★★★★★</div>
-                <p>"Fast delivery and excellent packaging. The Ghani Guru quality is visible in every drop!"</p>
-                <div style="font-weight: 600; margin-top: 15px;">— Priya Verma, Durg</div>
-            </div>
-            <div class="testi-card">
-                <div class="stars">★★★★★</div>
-                <p>"Using their Coconut oil for my baby. It's safe, natural, and smells wonderful."</p>
-                <div style="font-weight: 600; margin-top: 15px;">— Ankit Sahu, Raipur</div>
-            </div>
-        </div>
-    </section>
-
     <div class="cart-box" id="order">
-        <h2 style="font-family: 'Playfair Display'; border-bottom: 2px solid var(--bg); padding-bottom: 10px;">Your Shopping Cart</h2>
-        <div id="cartContent"><p style="color: #888;">Your cart is empty.</p></div>
-        <div class="total" id="totalWrapper" style="display:none;">Grand Total: ₹<span id="grandTotal">0</span></div>
-        <button class="whatsapp-btn" onclick="checkout()">🚀 Confirm & Order via WhatsApp</button>
+        <h2 style="font-family: 'Playfair Display';">Your Cart</h2>
+        <div id="cartContent">Your cart is empty.</div>
+        <div id="totalWrapper" style="display:none; font-size: 1.5rem; text-align: right; font-weight: bold; margin: 20px 0;">Total: ₹<span id="grandTotal">0</span></div>
+        <button class="whatsapp-btn" onclick="checkout()">🚀 Order via WhatsApp</button>
+    </div>
+</div>
+
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalProductName">Write a Review</h3>
+        <p>Your Rating:</p>
+        <div class="rating-input" id="starInput">
+            <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
+        </div>
+        <input type="text" id="reviewerName" placeholder="Your Name" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
+        <textarea id="reviewComment" placeholder="Write your thoughts..."></textarea>
+        <button class="btn" style="width:100%" onclick="submitReview()">Submit Review</button>
     </div>
 </div>
 
 <footer>
-    <p>© 2026 Shuddh Shakti Oils | Raipur, Chhattisgarh, India</p>
-    <p style="font-size: 0.8rem; opacity: 0.6;">Traditional Quality • Chemical Free • Guaranteed Pure</p>
+    <p>© 2026 Shuddh Shakti Oils | Raipur, Chhattisgarh</p>
 </footer>
 
 <script>
+    let currentProduct = "";
+    let selectedRating = 0;
     let cart = [];
 
-    function addToCart(pName, pPrice, qtyId) {
-        const quantity = parseInt(document.getElementById(qtyId).value);
-        const existing = cart.find(item => item.name === pName);
-        if (existing) { existing.qty += quantity; } 
-        else { cart.push({ name: pName, price: pPrice, qty: quantity }); }
+    // --- Review Logic ---
+    function openReviewModal(productName) {
+        currentProduct = productName;
+        document.getElementById('modalProductName').innerText = "Review for " + productName;
+        document.getElementById('reviewModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('reviewModal').style.display = "none";
+        resetModal();
+    }
+
+    function setRating(n) {
+        selectedRating = n;
+        let stars = document.getElementById('starInput').getElementsByTagName('span');
+        for (let i = 0; i < 5; i++) {
+            stars[i].style.color = i < n ? "var(--star)" : "#ccc";
+        }
+    }
+
+    function resetModal() {
+        selectedRating = 0;
+        document.getElementById('reviewComment').value = "";
+        document.getElementById('reviewerName').value = "";
+        let stars = document.getElementById('starInput').getElementsByTagName('span');
+        for (let s of stars) s.style.color = "#ccc";
+    }
+
+    function submitReview() {
+        const name = document.getElementById('reviewerName').value || "Customer";
+        const comment = document.getElementById('reviewComment').value;
+        if (selectedRating === 0) { alert("Please select a star rating!"); return; }
+
+        // Add to page
+        const containerId = "reviews-" + currentProduct.split(" ")[0];
+        const container = document.getElementById(containerId);
+        const newReview = document.createElement('div');
+        newReview.className = 'review-item';
+        newReview.innerHTML = `<strong>★ ${selectedRating}</strong> by ${name} - "${comment}"`;
+        container.prepend(newReview);
+
+        // Notify Owner via WhatsApp (Optional)
+        if(confirm("Review added! Would you like to send this feedback to the owner via WhatsApp?")) {
+            const msg = `*NEW REVIEW*%0AProduct: ${currentProduct}%0ARating: ${selectedRating}/5%0AComment: ${comment}%0AFrom: ${name}`;
+            window.open(`https://wa.me/919907972769?text=${msg}`, "_blank");
+        }
+
+        closeModal();
+    }
+
+    // --- Cart Logic ---
+    function addToCart(name, price, qtyId) {
+        const qty = parseInt(document.getElementById(qtyId).value);
+        const existing = cart.find(i => i.name === name);
+        if (existing) existing.qty += qty;
+        else cart.push({ name, price, qty });
         renderCart();
     }
 
     function renderCart() {
         const container = document.getElementById('cartContent');
-        const totalWrapper = document.getElementById('totalWrapper');
+        const totalWrap = document.getElementById('totalWrapper');
         const grandTotal = document.getElementById('grandTotal');
-        const badge = document.getElementById('floatingCart');
-        const countSpan = document.getElementById('cartCount');
         
         if (cart.length === 0) {
-            container.innerHTML = '<p style="color: #888;">Your cart is empty.</p>';
-            totalWrapper.style.display = 'none';
-            badge.style.display = 'none';
+            container.innerHTML = "Your cart is empty.";
+            totalWrap.style.display = 'none';
             return;
         }
 
-        totalWrapper.style.display = 'block';
-        badge.style.display = 'block';
-        
-        let html = '<ul style="list-style: none; padding: 0;">';
-        let total = 0; let totalItems = 0;
-
-        cart.forEach((item) => {
-            let subtotal = item.price * item.qty;
-            total += subtotal;
-            totalItems += item.qty;
-            html += `<li><span><strong>${item.name}</strong> (x${item.qty}L)</span><span>₹${subtotal}</span></li>`;
+        totalWrap.style.display = 'block';
+        let html = "<ul>";
+        let total = 0;
+        cart.forEach(item => {
+            html += `<li>${item.name} (x${item.qty}L) - ₹${item.price * item.qty}</li>`;
+            total += item.price * item.qty;
         });
-
-        html += '</ul>';
-        container.innerHTML = html;
+        container.innerHTML = html + "</ul>";
         grandTotal.innerText = total;
-        countSpan.innerText = totalItems;
     }
 
     function checkout() {
-        if (cart.length === 0) { alert("Your cart is empty!"); return; }
-        const myWhatsAppNumber = "919907972769"; 
-        let orderList = ""; let totalAmount = 0;
+        if (cart.length === 0) { alert("Cart is empty!"); return; }
+        let orderStr = "*NEW ORDER*%0A";
+        let total = 0;
         cart.forEach(item => {
-            orderList += `✅ ${item.name} - ${item.qty}L (₹${item.price * item.qty})%0A`;
-            totalAmount += (item.price * item.qty);
+            orderStr += `${item.name} x ${item.qty}L%0A`;
+            total += item.price * item.qty;
         });
-        const message = `*NEW ORDER - SHUDDH SHAKTI OILS*%0A----------------------------%0A${orderList}----------------------------%0A*TOTAL AMOUNT: ₹${totalAmount}*%0A%0APlease confirm this order and let me know the delivery time.`;
-        window.open(`https://wa.me/${myWhatsAppNumber}?text=${message}`, "_blank");
+        window.open(`https://wa.me/919907972769?text=${orderStr}*Total: ₹${total}*`, "_blank");
     }
 </script>
 

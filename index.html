@@ -12,6 +12,7 @@
             --bg: #fdfbf7;      /* Creamy Paper White */
             --text: #1a1a1a;
             --white: #ffffff;
+            --discount: #2d5a27;
         }
 
         * { box-sizing: border-box; }
@@ -40,7 +41,6 @@
             display: block;
         }
 
-        /* Updated with Banner.png */
         header {
             width: 100%;
             height: 500px;
@@ -65,20 +65,33 @@
             padding-bottom: 25px;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
         .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         
-        /* Updated card image styling for your specific product renders */
         .card img { 
             width: 100%; 
             height: 400px; 
-            object-fit: contain; /* Changed to contain to show the full label/bottle */
+            object-fit: contain; 
             background: #fff;
             padding: 10px;
         }
         
         .card h3 { font-family: 'Playfair Display', serif; margin: 20px 0 5px; color: var(--primary); }
+        
+        /* Discount Styling */
+        .mrp { text-decoration: line-through; color: #888; font-size: 0.9rem; margin-top: 5px; }
         .price { color: var(--accent); font-weight: 700; font-size: 1.3rem; margin-bottom: 15px; }
+        .discount-tag {
+            background: var(--discount);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
 
         .controls { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 0 20px; margin-top: auto; }
         .qty { width: 65px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; text-align: center; font-weight: bold; }
@@ -143,7 +156,9 @@
         <div class="card">
             <img src="Coconut.png" alt="Coconut Oil">
             <h3>Coconut Oil</h3>
+            <div class="mrp">Market Price: ₹1400</div>
             <div class="price">₹1250 / 1L</div>
+            <div><span class="discount-tag">Save ₹150</span></div>
             <div class="controls">
                 <input type="number" id="qty1" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Coconut Oil', 1250, 'qty1')">Add to Cart</button>
@@ -153,7 +168,9 @@
         <div class="card">
             <img src="mustard.png" alt="Mustard Oil">
             <h3>Mustard Oil</h3>
+            <div class="mrp">Market Price: ₹550</div>
             <div class="price">₹500 / 1L</div>
+            <div><span class="discount-tag">Save ₹50</span></div>
             <div class="controls">
                 <input type="number" id="qty2" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Mustard Oil', 500, 'qty2')">Add to Cart</button>
@@ -163,7 +180,9 @@
         <div class="card">
             <img src="groundnut.png" alt="Groundnut Oil">
             <h3>Groundnut oil</h3>
+            <div class="mrp">Market Price: ₹700</div>
             <div class="price">₹600 / 1L</div>
+            <div><span class="discount-tag">Save ₹100</span></div>
             <div class="controls">
                 <input type="number" id="qty3" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Groundnut Oil', 600, 'qty3')">Add to Cart</button>
@@ -171,9 +190,11 @@
         </div>
 
         <div class="card">
-            <img src="soybean.png" alt="Soybean Oil">
+            <img src="soyabean.png" alt="Soybean Oil">
             <h3>Soyabean Oil</h3>
+            <div class="mrp">Market Price: ₹500</div>
             <div class="price">₹450 / 1L</div>
+            <div><span class="discount-tag">Save ₹50</span></div>
             <div class="controls">
                 <input type="number" id="qty4" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Soyabean Oil', 450, 'qty4')">Add to Cart</button>
@@ -183,7 +204,9 @@
         <div class="card">
             <img src="sesame.png" alt="Sesame Oil">
             <h3>Sesame (Til) Oil</h3>
+            <div class="mrp">Market Price: ₹950</div>
             <div class="price">₹850 / 1L</div>
+            <div><span class="discount-tag">Save ₹100</span></div>
             <div class="controls">
                 <input type="number" id="qty5" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Sesame (Til) Oil', 850, 'qty5')">Add to Cart</button>
@@ -193,7 +216,9 @@
         <div class="card">
             <img src="sunflower.png" alt="Sunflower Oil">
             <h3>Sunflower Oil</h3>
+            <div class="mrp">Market Price: ₹680</div>
             <div class="price">₹600 / 1L</div>
+            <div><span class="discount-tag">Save ₹80</span></div>
             <div class="controls">
                 <input type="number" id="qty6" class="qty" value="1" min="1">
                 <button class="btn" onclick="addToCart('Sunflower Oil', 600, 'qty6')">Add to Cart</button>

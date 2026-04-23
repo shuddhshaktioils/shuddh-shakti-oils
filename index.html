@@ -26,34 +26,31 @@
 
         .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
 
-        /* Product Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card { background: var(--white); border-radius: 20px; overflow: hidden; border: 1px solid #eee; text-align: center; padding-bottom: 25px; display: flex; flex-direction: column; height: 100%; transition: 0.3s; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         .card img { width: 100%; height: 280px; object-fit: contain; padding: 10px; }
         
-        /* Review Display Styles */
-        .stars { color: var(--star); cursor: pointer; }
-        .review-section { padding: 15px; border-top: 1px solid #f9f4ee; margin-top: 10px; text-align: left; max-height: 150px; overflow-y: auto; }
-        .review-item { font-size: 0.8rem; margin-bottom: 8px; border-bottom: 1px dashed #eee; padding-bottom: 5px; }
-        .write-review-btn { background: none; border: 1px solid var(--accent); color: var(--accent); padding: 5px 15px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; margin-top: 10px; font-weight: 600; }
+        .stars { color: var(--star); }
+        .review-section { padding: 15px; border-top: 1px solid #f9f4ee; margin-top: 10px; text-align: left; max-height: 150px; overflow-y: auto; background: #fafafa; margin: 10px; border-radius: 10px; }
+        .review-item { font-size: 0.8rem; margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; }
+        
+        .write-review-btn { background: none; border: 1px solid var(--accent); color: var(--accent); padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; margin: 10px auto; font-weight: 600; width: 80%; }
         .write-review-btn:hover { background: var(--accent); color: white; }
 
-        /* Modal Styles */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-        .modal-content { background: white; margin: 10% auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; position: relative; }
-        .close { position: absolute; right: 20px; top: 10px; font-size: 24px; cursor: pointer; }
-        .modal-content h3 { font-family: 'Playfair Display'; color: var(--primary); }
-        .rating-input { font-size: 25px; margin: 10px 0; color: #ccc; }
-        .rating-input span:hover, .rating-input span.active { color: var(--star); }
-        textarea { width: 100%; height: 80px; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin: 10px 0; font-family: inherit; }
-        
-        /* Price & Buttons */
         .price-container { background: #f9f4ee; margin: 10px 25px; padding: 10px; border-radius: 12px; }
         .price { font-weight: 700; font-size: 1.2rem; }
-        .controls { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: auto; padding: 0 20px; }
+        .mrp { text-decoration: line-through; color: #888; font-size: 0.8rem; }
+        
+        .controls { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 0 20px; }
         .qty { width: 60px; padding: 10px; border-radius: 8px; border: 1px solid #ddd; text-align: center; }
-        .btn { background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .btn { background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; flex: 1; }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+        .modal-content { background: white; margin: 10% auto; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; position: relative; }
+        .close { position: absolute; right: 20px; top: 10px; font-size: 24px; cursor: pointer; }
+        .rating-input { font-size: 30px; margin: 15px 0; color: #ccc; cursor: pointer; }
         
         .cart-box { margin-top: 60px; background: var(--white); padding: 40px; border-radius: 20px; border-top: 5px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .whatsapp-btn { background: #25D366; width: 100%; font-size: 1.2rem; padding: 20px; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px; }
@@ -65,19 +62,20 @@
 
 <nav>
     <div class="nav-logo"><img src="SSlogo.png" alt="Shuddh Shakti Logo"></div>
-    <div style="font-weight: 600; color: var(--accent);">Ghani Guru Quality</div>
+    <div style="font-weight: 600; color: var(--accent);">PREMIUM COLD PRESSED</div>
 </nav>
 
 <header></header>
 
 <div class="container">
-    <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--primary);">Our Pure Cold Pressed Oils</h2>
+    <h2 style="text-align: center; font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--primary);">Our Complete Collection</h2>
     
     <div class="grid">
-        <div class="card" id="p1">
+        <div class="card">
             <img src="Coconut.png" alt="Coconut Oil">
             <h3>Coconut Oil</h3>
             <div class="price-container">
+                <div class="mrp">MRP: ₹1400</div>
                 <div class="price">₹1250 / 1L</div>
             </div>
             <div class="controls">
@@ -85,15 +83,16 @@
                 <button class="btn" onclick="addToCart('Coconut Oil', 1250, 'qty1')">Add to Cart</button>
             </div>
             <div class="review-section" id="reviews-Coconut">
-                <div class="review-item"><strong>★ 5</strong> - "Truly aromatic!"</div>
+                <div class="review-item"><strong>★ 5</strong> - "Perfect for hair and cooking."</div>
             </div>
-            <button class="write-review-btn" onclick="openReviewModal('Coconut Oil')">Write a Review</button>
+            <button class="write-review-btn" onclick="openReviewModal('Coconut Oil')">Rate & Review</button>
         </div>
 
-        <div class="card" id="p2">
+        <div class="card">
             <img src="mustard.png" alt="Mustard Oil">
             <h3>Mustard Oil</h3>
             <div class="price-container">
+                <div class="mrp">MRP: ₹550</div>
                 <div class="price">₹500 / 1L</div>
             </div>
             <div class="controls">
@@ -101,15 +100,16 @@
                 <button class="btn" onclick="addToCart('Mustard Oil', 500, 'qty2')">Add to Cart</button>
             </div>
             <div class="review-section" id="reviews-Mustard">
-                <div class="review-item"><strong>★ 5</strong> - "Perfect pungency."</div>
+                <div class="review-item"><strong>★ 5</strong> - "Strong and authentic."</div>
             </div>
-            <button class="write-review-btn" onclick="openReviewModal('Mustard Oil')">Write a Review</button>
+            <button class="write-review-btn" onclick="openReviewModal('Mustard Oil')">Rate & Review</button>
         </div>
 
-        <div class="card" id="p3">
+        <div class="card">
             <img src="groundnut.png" alt="Groundnut Oil">
             <h3>Groundnut Oil</h3>
             <div class="price-container">
+                <div class="mrp">MRP: ₹700</div>
                 <div class="price">₹600 / 1L</div>
             </div>
             <div class="controls">
@@ -117,30 +117,82 @@
                 <button class="btn" onclick="addToCart('Groundnut Oil', 600, 'qty3')">Add to Cart</button>
             </div>
             <div class="review-section" id="reviews-Groundnut">
-                <div class="review-item"><strong>★ 4</strong> - "Great for frying."</div>
+                <div class="review-item"><strong>★ 5</strong> - "Very high quality."</div>
             </div>
-            <button class="write-review-btn" onclick="openReviewModal('Groundnut Oil')">Write a Review</button>
+            <button class="write-review-btn" onclick="openReviewModal('Groundnut Oil')">Rate & Review</button>
+        </div>
+
+        <div class="card">
+            <img src="soyabean.png" alt="Soyabean Oil">
+            <h3>Soyabean Oil</h3>
+            <div class="price-container">
+                <div class="mrp">MRP: ₹500</div>
+                <div class="price">₹450 / 1L</div>
+            </div>
+            <div class="controls">
+                <input type="number" id="qty4" class="qty" value="1" min="1">
+                <button class="btn" onclick="addToCart('Soyabean Oil', 450, 'qty4')">Add to Cart</button>
+            </div>
+            <div class="review-section" id="reviews-Soyabean">
+                <div class="review-item"><strong>★ 4</strong> - "Light and healthy."</div>
+            </div>
+            <button class="write-review-btn" onclick="openReviewModal('Soyabean Oil')">Rate & Review</button>
+        </div>
+
+        <div class="card">
+            <img src="sesame.png" alt="Sesame Oil">
+            <h3>Sesame (Til) Oil</h3>
+            <div class="price-container">
+                <div class="mrp">MRP: ₹950</div>
+                <div class="price">₹850 / 1L</div>
+            </div>
+            <div class="controls">
+                <input type="number" id="qty5" class="qty" value="1" min="1">
+                <button class="btn" onclick="addToCart('Sesame (Til) Oil', 850, 'qty5')">Add to Cart</button>
+            </div>
+            <div class="review-section" id="reviews-Sesame">
+                <div class="review-item"><strong>★ 5</strong> - "Great for health!"</div>
+            </div>
+            <button class="write-review-btn" onclick="openReviewModal('Sesame (Til) Oil')">Rate & Review</button>
+        </div>
+
+        <div class="card">
+            <img src="sunflower.png" alt="Sunflower Oil">
+            <h3>Sunflower Oil</h3>
+            <div class="price-container">
+                <div class="mrp">MRP: ₹680</div>
+                <div class="price">₹600 / 1L</div>
+            </div>
+            <div class="controls">
+                <input type="number" id="qty6" class="qty" value="1" min="1">
+                <button class="btn" onclick="addToCart('Sunflower Oil', 600, 'qty6')">Add to Cart</button>
+            </div>
+            <div class="review-section" id="reviews-Sunflower">
+                <div class="review-item"><strong>★ 5</strong> - "Best for deep frying."</div>
+            </div>
+            <button class="write-review-btn" onclick="openReviewModal('Sunflower Oil')">Rate & Review</button>
         </div>
     </div>
 
     <div class="cart-box" id="order">
-        <h2 style="font-family: 'Playfair Display';">Your Cart</h2>
-        <div id="cartContent">Your cart is empty.</div>
-        <div id="totalWrapper" style="display:none; font-size: 1.5rem; text-align: right; font-weight: bold; margin: 20px 0;">Total: ₹<span id="grandTotal">0</span></div>
-        <button class="whatsapp-btn" onclick="checkout()">🚀 Order via WhatsApp</button>
+        <h2 style="font-family: 'Playfair Display';">Shopping Cart</h2>
+        <div id="cartContent">Select products to add them to your cart.</div>
+        <div id="totalWrapper" style="display:none; font-size: 1.5rem; text-align: right; font-weight: bold; margin-top: 20px; border-top: 2px solid #eee; padding-top: 10px;">
+            Total Amount: ₹<span id="grandTotal">0</span>
+        </div>
+        <button class="whatsapp-btn" onclick="checkout()">📲 Proceed to Order via WhatsApp</button>
     </div>
 </div>
 
 <div id="reviewModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h3 id="modalProductName">Write a Review</h3>
-        <p>Your Rating:</p>
+        <h3 id="modalProductName" style="font-family: 'Playfair Display'; color: var(--primary);">Review Product</h3>
         <div class="rating-input" id="starInput">
             <span onclick="setRating(1)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(5)">★</span>
         </div>
-        <input type="text" id="reviewerName" placeholder="Your Name" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
-        <textarea id="reviewComment" placeholder="Write your thoughts..."></textarea>
+        <input type="text" id="reviewerName" placeholder="Your Name" style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd;">
+        <textarea id="reviewComment" placeholder="Write your comments here..." style="width:100%; height:80px; padding:12px; border-radius:8px; border:1px solid #ddd; font-family: inherit;"></textarea>
         <button class="btn" style="width:100%" onclick="submitReview()">Submit Review</button>
     </div>
 </div>
@@ -154,10 +206,10 @@
     let selectedRating = 0;
     let cart = [];
 
-    // --- Review Logic ---
+    // Review Logic
     function openReviewModal(productName) {
         currentProduct = productName;
-        document.getElementById('modalProductName').innerText = "Review for " + productName;
+        document.getElementById('modalProductName').innerText = "Review " + productName;
         document.getElementById('reviewModal').style.display = "block";
     }
 
@@ -185,26 +237,22 @@
     function submitReview() {
         const name = document.getElementById('reviewerName').value || "Customer";
         const comment = document.getElementById('reviewComment').value;
-        if (selectedRating === 0) { alert("Please select a star rating!"); return; }
+        if (selectedRating === 0) { alert("Please select a rating!"); return; }
 
-        // Add to page
-        const containerId = "reviews-" + currentProduct.split(" ")[0];
-        const container = document.getElementById(containerId);
-        const newReview = document.createElement('div');
-        newReview.className = 'review-item';
-        newReview.innerHTML = `<strong>★ ${selectedRating}</strong> by ${name} - "${comment}"`;
-        container.prepend(newReview);
+        // Determine container ID based on product name
+        let key = currentProduct.split(" ")[0];
+        const container = document.getElementById('reviews-' + key);
+        
+        const div = document.createElement('div');
+        div.className = 'review-item';
+        div.innerHTML = `<strong>★ ${selectedRating}</strong> by ${name} - "${comment}"`;
+        container.prepend(div);
 
-        // Notify Owner via WhatsApp (Optional)
-        if(confirm("Review added! Would you like to send this feedback to the owner via WhatsApp?")) {
-            const msg = `*NEW REVIEW*%0AProduct: ${currentProduct}%0ARating: ${selectedRating}/5%0AComment: ${comment}%0AFrom: ${name}`;
-            window.open(`https://wa.me/919907972769?text=${msg}`, "_blank");
-        }
-
+        alert("Thank you for your feedback!");
         closeModal();
     }
 
-    // --- Cart Logic ---
+    // Cart Logic
     function addToCart(name, price, qtyId) {
         const qty = parseInt(document.getElementById(qtyId).value);
         const existing = cart.find(i => i.name === name);
@@ -219,16 +267,19 @@
         const grandTotal = document.getElementById('grandTotal');
         
         if (cart.length === 0) {
-            container.innerHTML = "Your cart is empty.";
+            container.innerHTML = "Select products to add them to your cart.";
             totalWrap.style.display = 'none';
             return;
         }
 
         totalWrap.style.display = 'block';
-        let html = "<ul>";
+        let html = '<ul style="list-style: none; padding: 0;">';
         let total = 0;
         cart.forEach(item => {
-            html += `<li>${item.name} (x${item.qty}L) - ₹${item.price * item.qty}</li>`;
+            html += `<li style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                        <span>${item.name} (x${item.qty}L)</span>
+                        <span>₹${item.price * item.qty}</span>
+                    </li>`;
             total += item.price * item.qty;
         });
         container.innerHTML = html + "</ul>";
@@ -236,14 +287,11 @@
     }
 
     function checkout() {
-        if (cart.length === 0) { alert("Cart is empty!"); return; }
-        let orderStr = "*NEW ORDER*%0A";
-        let total = 0;
-        cart.forEach(item => {
-            orderStr += `${item.name} x ${item.qty}L%0A`;
-            total += item.price * item.qty;
-        });
-        window.open(`https://wa.me/919907972769?text=${orderStr}*Total: ₹${total}*`, "_blank");
+        if (cart.length === 0) { alert("Your cart is empty!"); return; }
+        let orderStr = "*SHUDDH SHAKTI ORDER*%0A";
+        cart.forEach(item => { orderStr += `${item.name}: ${item.qty}L%0A`; });
+        const total = document.getElementById('grandTotal').innerText;
+        window.open(`https://wa.me/919907972769?text=${orderStr}*Total Amount: ₹${total}*`, "_blank");
     }
 </script>
 

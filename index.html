@@ -41,16 +41,27 @@
             display: block;
         }
 
+        /* BANNER ADJUSTMENT START */
         header {
             width: 100%;
-            height: 500px;
-            background: url('Banner.png') no-repeat center center; 
-            background-size: cover;
+            height: auto;
+            aspect-ratio: 16 / 7; /* Adjusts height automatically based on width */
+            background: url('Banner.jpg') no-repeat center center; 
+            background-size: contain; /* Ensures the full image fits inside the frame */
+            background-color: var(--bg);
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
+        @media (max-width: 768px) {
+            header {
+                aspect-ratio: 16 / 9; /* Slightly taller for mobile screens */
+                background-size: cover; /* Looks better filled on mobile */
+            }
+        }
+        /* BANNER ADJUSTMENT END */
 
         .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
 
@@ -79,7 +90,6 @@
         
         .card h3 { font-family: 'Playfair Display', serif; margin: 20px 0 5px; color: var(--primary); }
         
-        /* Discount Styling */
         .mrp { text-decoration: line-through; color: #888; font-size: 0.9rem; margin-top: 5px; }
         .price { color: var(--accent); font-weight: 700; font-size: 1.3rem; margin-bottom: 15px; }
         .discount-tag {
@@ -154,7 +164,7 @@
     
     <div class="grid">
         <div class="card">
-            <img src="Coconut.png" alt="Coconut Oil">
+            <img src="Coconut.jpg" alt="Coconut Oil">
             <h3>Coconut Oil</h3>
             <div class="mrp">Market Price: ₹1400</div>
             <div class="price">₹1250 / 1L</div>
@@ -190,7 +200,7 @@
         </div>
 
         <div class="card">
-            <img src="soyabean.png" alt="Soyabean Oil">
+            <img src="Soyabean.jpg" alt="Soyabean Oil">
             <h3>Soyabean Oil</h3>
             <div class="mrp">Market Price: ₹500</div>
             <div class="price">₹450 / 1L</div>
